@@ -267,28 +267,6 @@ cc_library(
 )
 
 cc_library(
-    name = "oauth_client",
-    srcs = [
-        "oauth_client.cc",
-    ],
-    hdrs = [
-        "oauth_client.h",
-    ],
-    copts = tf_copts(),
-    deps = [
-        ":curl_http_request",
-        ":http_request",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-        "//tensorflow/core/platform:base64",
-        "//tensorflow/core/platform:errors",
-        "//tensorflow/core/platform:status",
-        "@boringssl//:crypto",
-        "@jsoncpp_git//:jsoncpp",
-    ],
-)
-
-cc_library(
     name = "time_util",
     srcs = [
         "time_util.cc",
@@ -384,29 +362,6 @@ tf_cc_test(
         "//tensorflow/core:test",
         "//tensorflow/core:test_main",
         "//tensorflow/core/platform:path",
-    ],
-)
-
-tf_cc_test(
-    name = "oauth_client_test",
-    size = "small",
-    srcs = ["oauth_client_test.cc"],
-    data = [
-        "//tensorflow/core/platform/cloud/testdata:service_account_credentials",
-        "//tensorflow/core/platform/cloud/testdata:service_account_public_key",
-    ],
-    deps = [
-        ":http_request_fake",
-        ":oauth_client",
-        "//tensorflow/core:lib",
-        "//tensorflow/core:lib_internal",
-        "//tensorflow/core:test",
-        "//tensorflow/core:test_main",
-        "//tensorflow/core/platform:base64",
-        "//tensorflow/core/platform:path",
-        "//tensorflow/core/platform:resource_loader",
-        "//tensorflow/core/platform:scanner",
-        "@boringssl//:crypto",
     ],
 )
 
